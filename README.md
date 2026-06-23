@@ -2,16 +2,14 @@
 
 ## Overview
 
-This project implements a Retrieval Augmented Generation (RAG) pipeline completely locally.
+This project implements a Retrieval-Augmented Generation (RAG) pipeline entirely locally.
 
 ## Overall Workflow:
 
 PDF → Chunking → Embedding → ChromaDB → Retrieval → Re-Ranking → Gemma3 → Answer
 
-The pipeline:
-
 1. Reads PDF documents
-2. Extracts text, images, tables and metadata
+2. Extracts text, images, tables, and metadata
 3. Splits content into semantic chunks
 4. Generates embeddings using Ollama
 5. Stores vectors inside ChromaDB
@@ -22,7 +20,7 @@ The pipeline:
 
 ## Components
 
-### loaders.py
+### loaders
 Purpose: Load and extract information from documents.
 
 * load PDF
@@ -31,8 +29,8 @@ Purpose: Load and extract information from documents.
 * extract metadata
 
 ### chunking
-Purpose: Split documents into chunks suitable for embedding.
-Functions: split_documents(documents,chunk_size=1000,chunk_overlap=200):
+Purpose: Split documents into chunks suitable for embedding with chunk_size=1000 and chunk_overlap=200.
+The chunk size is limited to the model token size and the overlap needed to maintain contextual coherence.
 
 Use Cases:
 * recursive_chunking()
@@ -40,23 +38,20 @@ Use Cases:
 * token_chunking()
   
 ### embeddings
-Purpose: Generate dense vector representations.
-Functions: generate_embeddings(model_name, documents)
+Purpose: Generate dense vector representations for each word.
 
 Use Cases:
 * Semantic search
 * Similarity matching
 
 ### vector_store
-Purpose: Store embeddings in ChromaDB.
-Functions: initialize_vector_store --> add_documents_to_vectorstore(collection, documents, embeddings):
+Purpose: Store embeddings in ChromaDB. This stores the 768-dimensional vector.
 
 Use Cases: 
 * Persistent vector storage
 
 ### retrieverval 
-Purpose: Retrieve relevant chunks.
-Functions: retrieve_documents(query)
+Purpose: Retrieve relevant chunks from the vector DB based on the user query embeddings.
 
 Use Cases:
 * Question answering
