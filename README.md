@@ -38,7 +38,7 @@ Use Cases:
 * semantic_chunking()
 * token_chunking()
   
-### Embeddings Vecotr
+### Embeddings Vector
 Purpose: Generate dense vector representations for each word.
 
 Use Cases:
@@ -51,7 +51,7 @@ Purpose: Store embeddings in ChromaDB. This stores the 768-dimensional vector.
 Use Cases: 
 * Persistent vector storage
 
-### Eetrieverval 
+### Retrieverval 
 Purpose: Retrieve relevant chunks from the vector DB based on the user query embeddings.
 
 Use Cases:
