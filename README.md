@@ -16,11 +16,12 @@ PDF → Chunking → Embedding → ChromaDB → Retrieval → Re-Ranking → Gem
 6. Retrieves relevant chunks using semantic search
 7. Re-ranks results
 8. Sends context to Gemma3
-9. Generates grounded answers
+9. Config & Gaudrails
+10. Observability & Evaluation
 
 ## Components
 
-### loaders
+### PDF Loaders
 Purpose: Load and extract information from documents.
 
 * load PDF
@@ -28,7 +29,7 @@ Purpose: Load and extract information from documents.
 * extract tables
 * extract metadata
 
-### chunking
+### Chunking
 Purpose: Split documents into chunks suitable for embedding with chunk_size=1000 and chunk_overlap=200.
 The chunk size is limited to the model token size and the overlap needed to maintain contextual coherence.
 
@@ -37,27 +38,27 @@ Use Cases:
 * semantic_chunking()
 * token_chunking()
   
-### embeddings
+### Embeddings Vecotr
 Purpose: Generate dense vector representations for each word.
 
 Use Cases:
 * Semantic search
 * Similarity matching
 
-### vector_store
+### Vector DB Store
 Purpose: Store embeddings in ChromaDB. This stores the 768-dimensional vector.
 
 Use Cases: 
 * Persistent vector storage
 
-### retrieverval 
+### Eetrieverval 
 Purpose: Retrieve relevant chunks from the vector DB based on the user query embeddings.
 
 Use Cases:
 * Question answering
 * Context retrieval
 
-### reranker
+### Re-ranker
 Purpose: Improve retrieval quality.
 Functions: rerank_documents()
 
@@ -65,8 +66,8 @@ Use Cases:
 * Remove noisy chunks
 * Improve relevance
 
-### llm invoke 
-Purpose: Invoking LLM locally using ollama to interact with Gemma3.
+### Generation  
+Purpose: Invoking LLM locally using ollama and generating output using retrieve douments
 Functions:  build prompt, generate response
 
 Use Cases:
@@ -80,3 +81,6 @@ Real-world Use Cases:
 * Research papers
 * Manuals
 * Financial reports
+
+### Config & Gaudrails
+### Observability & Evaluation
